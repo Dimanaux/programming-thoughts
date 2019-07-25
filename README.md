@@ -1,2 +1,64 @@
-# programming-thoughts
-My thoughts on programming/software engineering
+# Programming thoughts
+My thoughts on programming/software engineering.
+
+1. Methods should be 5 lines long (or less).
+
+If we write method body and we get 6 lines of code or more that means we build wrong abstraction.
+Our procedures used in this body should be on the same abstraction level.
+```java
+public void sendMessage(Message message, List<User> recipients) {
+    for (User u : recipients) {
+        u.setMessage(message);
+        userRepository.save(u);
+        message.addRecipient(u);
+        messageRepository.save(message);
+    }
+    notifyRecipients(recipients);
+} // Wrong!   
+```
+Here we can see that you use `notifyRecipients` function in the same method where `for` loop is used, in `for` loop we save our users and message. It is very unreadable since we have to understand something terrible and incomprehensible from this large `for` statement.
+Imagine we have this method implementation instead:
+```java
+public void sendMessage(Message message, List<User> recipients) {
+    message.sendAwayTo(recipients);
+    notifyRecipients(recipients);
+}
+```
+Now we perceive the meaning of this procedure much more clear, because names of functions tell us what the main idea of our method consists of.
+
+2. Don't fight Optional in Java.
+Many programmers don't know much about Optional in Java and they even don't want to understand it and use it in their purposes.
+```java
+public User authenticate(HttpServletRequest req) {
+    String username = req.getParameter("username");
+    String password = securityService.hashPassword(
+            req.getParameter("password")
+    );
+
+    User user = userDao.getByUsername(username);
+    if (user != null && user.getPassword().equals(password)) {
+        return user;
+    } else {
+        return null;
+    }
+}
+```
+Look at my code I wrote when I didn't know that userDao can return Optional<User> instead of just User instance.
+You should not avoid using Optional, you can interact with it like it is almost a User instance.
+```java
+public Optional<Account> authenticate(String username, String password) {
+    Optional<Account> account = accountRepo.findByUsername(username);
+    return account.filter(u -> encoder.matches(password, u.getPassword()));
+}
+```
+`Optional<User>` is not some odd object that makes you call `.get()` method and handle exceptions or check if it is null or something like this. 
+It is your OBJECT ITSELF, but it may not present. You can invoke all its methods!!! like this:
+```java
+Optional<Account> a = accountRepository.getFirst();
+a.map(Account::getEmail) // Optional<String>
+        .map(messageService::sendNotificationEmail) // sends email if user was found
+        // Optional<EmailMessage>
+        .orElseThrow(AccountNotFoundException::new); // notifies us that there were no user found
+// OR
+map.put("fullName", a.map(Account::getFullName).orElse("User not found"));
+```
