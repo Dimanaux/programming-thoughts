@@ -1,9 +1,9 @@
 # Programming thoughts
 My thoughts on programming/software engineering.
 
-1. Methods should be 5 lines long (or less).
+### 1. Method's statement should be on the same abstraction level.
 
-If we write method body and we get 6 lines of code or more that means we build wrong abstraction.
+If we write method body and we get a huge one that means we build wrong abstraction.
 Our procedures used in this body should be on the same abstraction level.
 ```java
 public void sendMessage(Message message, List<User> recipients) {
@@ -26,7 +26,7 @@ public void sendMessage(Message message, List<User> recipients) {
 ```
 Now we perceive the meaning of this procedure much more clear, because names of functions tell us what the main idea of our method consists of.
 
-2. Don't fight Optional in Java.
+### 2. Don't fight Optional in Java.
 Many programmers don't know much about Optional in Java and they even don't want to understand it and use it in their purposes.
 ```java
 public User authenticate(HttpServletRequest req) {
@@ -62,3 +62,6 @@ a.map(Account::getEmail) // Optional<String>
 // OR
 map.put("fullName", a.map(Account::getFullName).orElse("User not found"));
 ```
+
+### 3. Methods bodies should be five lines long (or even less).
+Think of method's size. How can be large methods convinient? They can't. If we write 5 lines of code in method we can clearly understand what it does. It is easy to debug. I have met 300-lined methods, invoking other huge methods and so on. It is very hard to understand what is happening there. They check something modyfiyng objects' states at the same time. They create a big mess.
