@@ -55,7 +55,7 @@ public Optional<Account> authenticate(String username, String password) {
 It is your OBJECT ITSELF, but it may not present. You can invoke all its methods!!! like this:
 ```java
 Optional<Account> a = accountRepository.getFirst();
-a.map(Account::getEmail) // Optional<String>
+a.map(Account::email) // Optional<String>
         .map(messageService::sendNotificationEmail) // sends email if user was found
         // Optional<EmailMessage>
         .orElseThrow(AccountNotFoundException::new); // notifies us that there were no user found
@@ -64,4 +64,27 @@ map.put("fullName", a.map(Account::getFullName).orElse("User not found"));
 ```
 
 ### 3. Methods bodies should be five lines long (or even less).
-Think of method's size. How can be large methods convinient? They can't. If we write 5 lines of code in method we can clearly understand what it does. It is easy to debug. I have met 300-lined methods, invoking other huge methods and so on. It is very hard to understand what is happening there. They check something modyfiyng objects' states at the same time. They create a big mess.
+Think of method's size.
+How can be large methods convinient? They can't.
+If we write 5 lines of code in method we can clearly understand what it does.
+It is easy to debug.
+I have met 300-lined methods, invoking other huge methods and so on.
+It is very hard to understand what is happening there.
+They check something modyfiyng objects' states at the same time.
+They create a big mess.
+Also classes should be very small and contain a few methods.
+
+And the best method is one-lined method. It looks like:
+```java
+class UserWithVacation {
+    private final User user;
+    
+    UserWithVacation(User user) {
+        this.user = user;
+    }
+    
+    public Hours vacationBalance() {
+        return Hours.of(user.vacatoinDaysLeft().size()).times(user.workHoursPerDay());
+    }
+}
+```
