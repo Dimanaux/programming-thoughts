@@ -90,8 +90,11 @@ class UserWithVacation {
 ```
 Here is a sign of bad method that does 2 things or more: we insert empty line in it.
 What is 2 things? Sounds abstract. It does.
-Method (function or procedure) should do only one thing - wrap less abstract procedures invokations.
+Method (function or procedure) should do only one thing - wrap less abstract procedures invocations.
+
 For instance, what is `person.addFriend(Person other)`? It is `if (other.subscribedTo(this)) { this.subscribeTo(other); }` (checks mutual subscription and subscribes one person to the other.
+
 What is `person.subscribedTo(Person other)`? It is `person.subscriptions.contains(other)`. What is `subscribeTo`? It is `person.subscriptions.add(other)` then `person.save()`.
+
 Abstract methods call a bit less abstract methods and they call even less abstract methods and so on. 
 Very abstract methods (your application itself, business logic) should not contain low-level methods calls. It makes our software inflexible.
