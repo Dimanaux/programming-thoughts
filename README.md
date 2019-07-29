@@ -70,7 +70,7 @@ map.put("fullName", a.map(Account::getFullName).orElse("User not found"));
 
 ## Methods bodies should be five lines long (or even less).
 Think of method's size.
-How can be large methods convinient? They can't.
+How can large methods be convenient? They can't.
 If we write 5 lines of code in method we can clearly understand what it does.
 It is easy to debug.
 I have met 300-lined methods, invoking other huge methods and so on.
