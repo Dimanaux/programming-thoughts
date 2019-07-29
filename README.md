@@ -6,7 +6,7 @@ My thoughts on programming/software engineering.
 0. [Don't fight Optional in Java.](#2-dont-fight-optional-in-java)
 0. [Methods bodies should be five lines long (or even less).](#3-methods-bodies-should-be-five-lines-long-or-even-less)
 
-### 1. Method's statement should be on the same abstraction level.
+## Method's statement should be on the same abstraction level.
 
 If we write method body and we get a huge one that means we build wrong abstraction.
 Our procedures used in this body should be on the same abstraction level.
@@ -31,7 +31,7 @@ public void sendMessage(Message message, List<User> recipients) {
 ```
 Now we perceive the meaning of this procedure much more clear, because names of functions tell us what the main idea of our method consists of.
 
-### 2. Don't fight Optional in Java.
+## Don't fight Optional in Java.
 Many programmers don't know much about Optional in Java and they even don't want to understand it and use it in their purposes.
 ```java
 public User authenticate(HttpServletRequest req) {
@@ -68,7 +68,7 @@ a.map(Account::email) // Optional<String>
 map.put("fullName", a.map(Account::getFullName).orElse("User not found"));
 ```
 
-### 3. Methods bodies should be five lines long (or even less).
+## Methods bodies should be five lines long (or even less).
 Think of method's size.
 How can be large methods convinient? They can't.
 If we write 5 lines of code in method we can clearly understand what it does.
