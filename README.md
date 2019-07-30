@@ -32,6 +32,7 @@ public void sendMessage(Message message, List<User> recipients) {
 Now we perceive the meaning of this procedure much more clear, because names of functions tell us what the main idea of our method consists of.
 
 ## Don't fight Optional in Java.
+
 Many programmers don't know much about Optional in Java and they even don't want to understand it and use it in their purposes.
 ```java
 public User authenticate(HttpServletRequest req) {
@@ -69,6 +70,7 @@ map.put("fullName", a.map(Account::getFullName).orElse("User not found"));
 ```
 
 ## Methods bodies should be five lines long (or even less).
+
 Think of method's size.
 How can large methods be convenient? They can't.
 If we write 5 lines of code in method we can clearly understand what it does.
@@ -103,3 +105,113 @@ What is `person.subscribedTo(Person other)`? It is `person.subscriptions.contain
 
 Abstract methods call a bit less abstract methods and they call even less abstract methods and so on. 
 Very abstract methods (your application itself, business logic) should not contain low-level methods calls. It makes our software inflexible.
+
+## We don't know OOP.
+
+What is Object-oriented programming?
+It is a paradigm where we use objects.
+Objects are like small machines with its inner state (position of all of its gears) and functions (buttons and livers).
+We can't intervene in it and move the gears, because we can easily break it.
+
+Also rotating a gear in our machine doesn't make any sense. We won't know what will happen.
+But we can interact with the machine using its buttons. All the buttons together form an interface.
+Also with interface we abstract its internal organization and we don't need to be puzzled with question "Which gear do we need to rotate to make the machine print our document?"
+
+Java is positioned as an object-oriented programming language.
+Now look to typical Java web application.
+```
+application
+├─── controller
+├─── model
+│    └ User.java
+├─── repository
+└─── service
+     └ UserService.java
+```
+Entity.java (access modifiers are omitted).
+```java
+class User {
+    String name;
+    int age;
+    
+    User() {}
+    String getName() {
+        return name;
+    }
+    int getAge() {
+        return age;
+    }
+    void setName(String name) {
+        this.name = name;
+    }
+    void setAge(int age) {
+        this.age = age;
+    }
+}
+```
+Huh! Looks like a structure in procedural programming language C.
+
+UserService.java
+```java
+class UserService {
+    UserRepository userRepository;
+    
+    boolean isAdult(User user) {
+        return user.getAge() >= 18;
+    }
+    String firstName(User user) {
+        return user.getName().split(" ")[0];
+    }
+    void updateName(User user, String name) {
+        user.setName(name);
+        userRepository.persist(user);
+    }
+    void updateAge(User user, int age) {
+        if (age < 0 || age > 256) {
+            throw new AgeException("Invalid age: " + age);
+        }
+        user.setAge(age);
+        userRepository.persist(user);
+    }
+}
+```
+
+What are gears, buttons for User? For UserService? Nothing. User creates no abstraction.
+
+We separeted User's functionality. Now we have only data structures and some functions for it.
+
+We still can break User like this: `user.setAge(-1); userRepository.persist(user);`
+
+It is not an object-oriented program.
+
+```C
+struct User { 
+   char* name;
+   int age;
+};
+
+int isAdult(struct User* user) {
+    return *(user->age) >= 18;
+}
+char* firstName(struct User* user) {
+    char* lastName = strchr(user->name, ' ');
+    int firstNameLength = lastName - user->name;
+    char* firstName = (char*)malloc((firstNameLength + 1) * sizeof(char));
+    strncpy(firstName, user->name, firstNameLength);
+    return firstName;
+}
+void updateName(struct User* user, char* name) {
+    free(user->name);
+    user->name = name;
+    userRepository->persist(user);
+}
+int updateAge(struct User* user, int age) {
+    if (age < 0 || age > 256) {
+        return -1;
+    }
+    user->age = age;
+    userRepository->persist(user);
+    return 0;
+}
+```
+
