@@ -5,6 +5,7 @@ My thoughts on programming/software engineering.
 0. [Method's statement should be on the same abstraction level.](#methods-statement-should-be-on-the-same-abstraction-level)
 0. [Don't fight Optional in Java.](#dont-fight-optional-in-java)
 0. [Methods bodies should be five lines long (or even less).](#methods-bodies-should-be-five-lines-long-or-even-less)
+0. [We don't know OOP.](#we-dont-know-oop)
 
 ## Method's statement should be on the same abstraction level.
 
@@ -214,4 +215,4 @@ int updateAge(struct User* user, int age) {
     return 0;
 }
 ```
-
+Is it an object-oriented program written in C? No, it is procedural program written in Java. You create UserService and put tons of long methods there.
