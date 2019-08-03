@@ -119,7 +119,7 @@ But we can interact with the machine using its buttons. All the buttons together
 Also with interface we abstract its internal organization and we don't need to be puzzled with question "Which gear do we need to rotate to make the machine print our document?"
 
 Java is positioned as an object-oriented programming language.
-Now look to typical Java web application.
+Now look at typical Java web application.
 ```
 application
 ├─── controller
