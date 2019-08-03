@@ -215,4 +215,4 @@ int updateAge(struct User* user, int age) {
     return 0;
 }
 ```
-Is it an object-oriented program written in C? No, it is procedural program written in Java. You create UserService and put tons of long methods there.
+Is it an object-oriented program written in C? No, it is procedural program written in Java. In the majority of our projects we create UserService and put tons of long methods there. UserService has no state, it is just a namespace for our procedures. User has no behaviour, it is data structure (or record, or associative array). They are not objects.
