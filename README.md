@@ -2,12 +2,12 @@
 My thoughts on programming/software engineering.
 
 ## Contents
-0. [Method's statement should be on the same abstraction level.](#methods-statement-should-be-on-the-same-abstraction-level)
+0. [Method's statements should be on the same abstraction level.](#methods-statements-should-be-on-the-same-abstraction-level)
 0. [Don't fight Optional in Java.](#dont-fight-optional-in-java)
 0. [Methods bodies should be five lines long (or even less).](#methods-bodies-should-be-five-lines-long-or-even-less)
 0. [We don't know OOP.](#we-dont-know-oop)
 
-## Method's statement should be on the same abstraction level.
+## Method's statements should be on the same abstraction level.
 
 If we write method body and we get a huge one that means we build wrong abstraction.
 Our procedures used in this body should be on the same abstraction level.
