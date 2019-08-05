@@ -1,6 +1,8 @@
 # Programming thoughts
 My thoughts on programming/software engineering.
 
+# MOVED TO [MyBlogImpl](https://dimanaux.github.io/myblogimpl)
+
 ## Contents
 0. [Method's statements should be on the same abstraction level.](#methods-statements-should-be-on-the-same-abstraction-level)
 0. [Don't fight Optional in Java.](#dont-fight-optional-in-java)
