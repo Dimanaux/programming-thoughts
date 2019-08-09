@@ -1,7 +1,7 @@
 # Programming thoughts
 My thoughts on programming/software engineering.
 
-# MOVED TO [MyBlogImpl](https://dimanaux.github.io/myblogimpl)
+# MOVED TO [MyBlogImpl](https://dimanaux.github.io/myblogimpl) (and [repository](https://github.com/Dimanaux/myblogimpl))
 
 ## Contents
 0. [Method's statements should be on the same abstraction level.](#methods-statements-should-be-on-the-same-abstraction-level)
